@@ -14,15 +14,16 @@
                         <h1 class="font-bold text-center mb-4">Create Karyawan</h1>
                     </div>
                     <div>
+                        <input type="number" >
                         <div class="mb-4 md:flex md:justify-between">
                             <div class="mb-2">
                                 <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
-                                <input type="text" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="name">
+                                <input type="text" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="name.0">
                                 @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-2">
                                 <label for="bonus" class="block text-gray-700 text-sm font-bold mb-2">Bonus</label>
-                                <input type="text" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="bonus">
+                                <input type="text" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="bonus.0">
                                 @error('bonus') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
                             <button class="bg-indigo-500 hover:bg-indigo-400 px-3 mt-4 mb-3 text-white rounded" wire:click.prevent="add({{ $i }})">Add+</button>
@@ -35,12 +36,12 @@
                             <div class="mb-2">
                                 <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
                                 <input type="text" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="name.{{ $values }}">
-                                @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('name. ' . $values) <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
                             <div class="mb-2">
                                 <label for="bonus" class="block text-gray-700 text-sm font-bold mb-2">Bonus</label>
                                 <input type="text" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="bonus.{{ $values }}">
-                                @error('bonus') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('bonus. ' . $values) <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
                             <button class="bg-red-500 hover:bg-red-400 px-3 mt-4 mb-3 text-white rounded" wire:click.prevent="remove({{ $key }})">Remove</button>
                         </div>

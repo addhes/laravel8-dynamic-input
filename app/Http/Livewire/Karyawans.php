@@ -82,15 +82,25 @@ class Karyawans extends Component
     {
 
         $this->validate([
-            'name'    => "required|string",
-            'bonus' => "required",
+            'name.0'    => "required|string",
+            'bonus.0' => "required",
+            'name.*' => "required",
+            'bonus.*' => "required",
         ]);
 
-        $result = Karyawan::updateOrCreate(['id' => $this->karyawan_id ],
-               [
-                 'name' => $this->name,
-                 'bonus' => $this->bonus,
-                ]);
+        foreach ($this->name as $key => $values){
+            Karyawan::updateOrCreate([
+                'name' => $this->name[$key],
+                'bonus' => $this->bonus[$key]
+            ]);
+        }
+
+        $this->input = [];
+        // Karyawan::updateOrCreate(['id' => $this->karyawan_id ],
+        //        [
+        //          'name' => $this->name,
+        //          'bonus' => $this->bonus,
+        //         ]);
 
         session()->flash('message', $this->karyawan ? 'About Update Successfully' : 'About Created Successfully');
 
